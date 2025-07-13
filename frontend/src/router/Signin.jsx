@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
-import "./signup.css"; // reuse the same CSS
+import "./signup.css";
+import Footer from "../components/Footer";
 
 function Signin() {
-    let image = [
+    const images = [
         'https://i.pinimg.com/736x/ae/fb/da/aefbda6813691770df40ab56c22e43e1.jpg',
         'https://i.pinimg.com/736x/14/79/9f/14799f7d1b7f3ceb95b09791b02f70fd.jpg',
         'https://i.pinimg.com/1200x/ec/31/87/ec318775b97af61e31b923f07718001c.jpg',
         'https://i.pinimg.com/1200x/b2/c1/4a/b2c14a9316ab35f0152b009d750fbdfd.jpg'
     ];
 
-    const [count, setcount] = useState(0);
-    const [img, setimg] = useState(image[0]);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            const newCount = (count + 1) % image.length;
-            setcount(newCount);
-            setimg(image[newCount]);
-        }, 5000);
+            setCount((prev) => (prev + 1) % images.length);
+        }, 3000);
 
         return () => clearTimeout(timer);
     }, [count]);
@@ -26,18 +24,22 @@ function Signin() {
         <>
             <div className="container py-5">
                 <div className="row justify-content-center">
-                    <div className="col-lg-10 d-flex shadow-lg" style={{ borderRadius: '15px' }}>
+                    <div className="col-lg-10 d-flex shadow-lg" style={{ borderRadius: '15px', overflow: 'hidden' }}>
 
-                        {/* Left Image Panel */}
-                        <div
-                            className="col-md-6 d-none d-md-block"
-                            style={{
-                                background: `url(${img}) no-repeat center center`,
-                                backgroundSize: 'cover',
-                                borderTopLeftRadius: '15px',
-                                borderBottomLeftRadius: '15px'
-                            }}
-                        ></div>
+                        {/* Left Image Panel with fade animation */}
+                        <div className="col-md-6 d-none d-md-block position-relative p-0 overflow-hidden">
+                            {images.map((img, index) => (
+                                <div
+                                    key={index}
+                                    className="fade-image"
+                                    style={{
+                                        backgroundImage: `url(${img})`,
+                                        opacity: index === count ? 1 : 0,
+                                        zIndex: index === count ? 1 : 0
+                                    }}
+                                ></div>
+                            ))}
+                        </div>
 
                         {/* Right Form Panel */}
                         <div className="col-md-6 form-container" style={{ backgroundColor: '#2a243c', borderTopRightRadius: '15px', borderBottomRightRadius: '15px', padding: '40px' }}>
@@ -70,6 +72,7 @@ function Signin() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

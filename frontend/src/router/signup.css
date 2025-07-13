@@ -44,3 +44,14 @@
       height: 20px;
       margin-right: 10px;
     }
+    .fade-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    transition: opacity 1s ease-in-out;
+    will-change: opacity;
+}

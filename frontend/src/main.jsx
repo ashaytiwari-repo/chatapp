@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Signup from './router/Signup.jsx';
 import Signin from './router/Signin.jsx';
+import ChatUI from './router/ChatUI.jsx';
 const router=createBrowserRouter([{
   path: '/',
   element: <App />,
@@ -19,6 +20,10 @@ const router=createBrowserRouter([{
 
   path:'signin',
   element:<Signin/>
+},
+{
+  path:'/Chat',
+  element:<ChatUI/>
 }])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
