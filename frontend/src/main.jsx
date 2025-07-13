@@ -3,9 +3,25 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Signup from './router/Signup.jsx';
+import Signin from './router/Signin.jsx';
+const router=createBrowserRouter([{
+  path: '/',
+  element: <App />,
+}
+,
+{
+  path: '/signup',
+  element:<Signup/>
+},
+{
 
+  path:'signin',
+  element:<Signin/>
+}])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
 )

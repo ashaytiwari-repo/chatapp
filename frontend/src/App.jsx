@@ -7,6 +7,7 @@ import Contents from "./components/Contents";
 import "./App.css";
 import Footer from "./components/Footer";
 import img from "./images/image.png"
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
   const heroRef = useRef(null);
@@ -32,13 +33,16 @@ export default function App() {
       }
     };
   }, []);
+  const navigate=useNavigate()
 
   return (
     <>
       <div className="main-container">
         <ScrollBar />
         <div className="register-fixed">
-          <button className="custom-btn btn btn-primary me-2 bg-white text-black" type="button">
+          <button className="custom-btn btn btn-primary me-2 bg-white text-black" type="button" onClick={()=>{
+            navigate("/signup")
+          }}>
             SIGNUP
           </button>
           <button className="custom-btn btn btn-primary bg-white text-black" type="button">

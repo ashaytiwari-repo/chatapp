@@ -1,0 +1,46 @@
+.left-panel {
+      background: url('your-image.jpg') no-repeat center center;
+      background-size: cover;
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+    }
+
+    .form-container {
+      background-color:black;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      padding: 40px;
+    }
+
+    .form-control,
+    .btn {
+      border-radius: 10px;
+    }
+
+    .btn-primary {
+      background-color: #9a4ef3;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #b376f5;
+    }
+
+    .divider {
+      border-top: 1px solid #666;
+      margin: 30px 0;
+    }
+
+    .form-check-label a {
+      color: #b376f5;
+      text-decoration: none;
+    }
+
+    .form-check-label a:hover {
+      text-decoration: underline;
+    }
+
+    .social-btn img {
+      height: 20px;
+      margin-right: 10px;
+    }
