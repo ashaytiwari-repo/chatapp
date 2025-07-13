@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useRef, useState } from "react";
+import ScrollBar from "./components/ScrollBar";
+import Welcome from "./components/Welcome";
+import Gestures from "./components/Box";
+import HeroSection from "./components/HeroSection";
+import Contents from "./components/Contents";
+import "./App.css";
+import Footer from "./components/Footer";
+import img from "./images/image.png"
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const heroRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.4, // % of .hero-cont visible before triggering
+      }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <div className="main-container">
+        <ScrollBar />
+        <div className="register-fixed">
+          <button className="custom-btn btn btn-primary me-2 bg-white text-black" type="button">
+            SIGNUP
+          </button>
+          <button className="custom-btn btn btn-primary bg-white text-black" type="button">
+            SIGNIN
+          </button>
+        </div>
+        <div className="mid-cont">
+          <Welcome />
+          <div className="box">
+            <Gestures />
+            <Gestures />
+          </div>
 
-export default App
+          <div
+            ref={heroRef}
+            className={`hero-cont ${isVisible ? "active-bg" : ""}`}
+          >
+            <HeroSection />
+            <Contents />
+            <div class="marquee">
+              <p>THIS WEBPAGE IS MADE BY ASHAY</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <Footer />
+
+    </>
+  );
+}
