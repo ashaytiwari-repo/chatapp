@@ -20,15 +20,6 @@ function Signin() {
         return () => clearTimeout(timer);
     }, [count]);
 
-    //u can use this also 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setCount((prev) => (prev + 1) % images.length);
-    //     }, 3000);
-
-    //     return () => clearInterval(interval);
-    // }, []); // 🔥 Important: empty dependency array
-
     return (
         <>
             <div className="container py-5">
